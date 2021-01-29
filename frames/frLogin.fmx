@@ -1,0 +1,90 @@
+object FLogin: TFLogin
+  Size.Width = 360.000000000000000000
+  Size.Height = 720.000000000000000000
+  Size.PlatformDefault = False
+  object Rectangle1: TRectangle
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Fill.Color = claWhite
+    Size.Width = 360.000000000000000000
+    Size.Height = 720.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+  end
+  object loLogin: TLayout
+    Align = Client
+    Size.Width = 360.000000000000000000
+    Size.Height = 720.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akLeft, akTop, akRight]
+      StyleLookup = 'edMain'
+      TabOrder = 0
+      Position.X = 59.000000000000000000
+      Position.Y = 319.000000000000000000
+      Size.Width = 250.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'Username'
+      StyledSettings = [Family, Style, FontColor]
+    end
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akLeft, akTop, akRight]
+      StyleLookup = 'edMain'
+      TabOrder = 2
+      Password = True
+      Position.X = 59.000000000000000000
+      Position.Y = 383.000000000000000000
+      Size.Width = 250.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'Password'
+      StyledSettings = [Family, Style, FontColor]
+      object PasswordEditButton1: TPasswordEditButton
+        CanFocus = False
+        Cursor = crArrow
+        Size.Width = 28.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+    end
+    object Label3: TLabel
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = []
+      Position.X = 59.000000000000000000
+      Position.Y = 232.000000000000000000
+      Size.Width = 250.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Bahnschrift'
+      TextSettings.Font.Size = 45.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = xFF3AB19B
+      TextSettings.HorzAlign = Center
+      Text = 'Masuk'
+      TabOrder = 1
+    end
+    object CornerButton1: TCornerButton
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, FontColor]
+      Position.X = 113.000000000000000000
+      Position.Y = 465.000000000000000000
+      Sides = [Top, Left, Bottom, Right]
+      Size.Width = 150.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'btnMain'
+      TabOrder = 3
+      Text = 'Pergi'
+      TextSettings.Font.Size = 15.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = claWhite
+      XRadius = 3.000000000000000000
+      YRadius = 3.000000000000000000
+      OnClick = CornerButton1Click
+    end
+  end
+end
