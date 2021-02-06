@@ -4,9 +4,64 @@ object FTemp: TFTemp
   Size.PlatformDefault = False
   object loMain: TLayout
     Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.Y = 50.000000000000000000
     Size.Width = 360.000000000000000000
-    Size.Height = 720.000000000000000000
+    Size.Height = 670.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
+  end
+  object loHeader: TLayout
+    Anchors = [akLeft, akTop, akRight]
+    Size.Width = 360.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object reHeader: TRectangle
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Corners = [BottomLeft, BottomRight]
+      Fill.Color = xFF1D6E63
+      Size.Width = 360.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 12.000000000000000000
+      YRadius = 12.000000000000000000
+      object seHeader: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.250000000000000000
+        ShadowColor = claBlack
+      end
+    end
+    object btnBack: TCornerButton
+      Images = DM.img
+      ImageIndex = 5
+      Position.X = 4.000000000000000000
+      Position.Y = 4.000000000000000000
+      Sides = [Top, Left, Bottom, Right]
+      Size.Width = 35.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'btnImg'
+      TabOrder = 2
+      XRadius = 3.000000000000000000
+      YRadius = 3.000000000000000000
+    end
+    object btnHapus: TCornerButton
+      Anchors = [akTop, akRight]
+      Images = DM.img
+      ImageIndex = 11
+      Position.X = 321.000000000000000000
+      Position.Y = 4.000000000000000000
+      Sides = [Top, Left, Bottom, Right]
+      Size.Width = 35.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'btnImg'
+      TabOrder = 1
+      XRadius = 3.000000000000000000
+      YRadius = 3.000000000000000000
+    end
   end
 end

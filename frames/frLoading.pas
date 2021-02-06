@@ -43,7 +43,8 @@ procedure TFLoading.faOpaFinish(Sender: TObject);
 begin
   faOpa.Enabled := False;
 
-  fnGoFrame(LOADING, MENUADMIN);
+  //fnGoFrame(LOADING, FEED);
+  tiMove.Enabled := True;
 end;
 
 procedure TFLoading.FirstShow;
@@ -83,7 +84,7 @@ end;
 procedure TFLoading.tiMoveTimer(Sender: TObject);
 begin
   tiMove.Enabled := False;
-  fnGoFrame(goFrame, HOME);
+  fnCekLogin;
 end;
 
 end.

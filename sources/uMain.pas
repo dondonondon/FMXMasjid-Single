@@ -15,14 +15,20 @@ uses
   {$ELSEIF Defined(MSWINDOWS)}
     IWSystem,
   {$ENDIF}
-  System.Generics.Collections;
+  System.Generics.Collections, System.Net.URLClient, System.Net.HttpClient,
+  System.Net.HttpClientComponent;
 
 const
   //FRAME
+  AKUN          = 'AKUN';
   LOADING       = 'LOADING';
   HOME          = 'HOME';
   LOGIN         = 'LOGIN';
   FEED          = 'FEED';
+  INFORMASI     = 'INFORMASI';
+  KAJIAN        = 'KAJIAN';
+  IMAM          = 'IMAM';
+  MFEED         = 'MANAJEMEN FEED';
   MENUADMIN     = 'MENUADMIN';
   MJAMAAH       = 'DATA JAMAAH';
   MJADWALIMAM   = 'JADWAL IMAM';
@@ -50,6 +56,7 @@ procedure fnSetFooter;
 procedure fnLoadLoading(lo : TLayout; ani : TAniIndicator; stat : Boolean); overload;  //ganti ini
 procedure fnLoadLoading(stat : Boolean); overload;
 procedure fnLoadLoadingAds(stat : Boolean);
+procedure fnLoadIndicator(ani : TAniIndicator; isActive : Boolean);
 
 procedure fnGetE(Msg, Cls : String); overload;
 procedure fnGetE(mem : TMemo; str : String); overload;
@@ -65,6 +72,10 @@ procedure fnClearUserINI;
 procedure fnClickBtn(B : TCornerButton);
 procedure addFindItem(lb : TListBox; ASearch : TSearchBox; args : String);
 function fnExplodeString(SourceStr: string; Delimiter: char): TStringList;
+procedure fnShowReload(AEvent : TNotifyEvent); overload;
+procedure fnShowReload(isVisible : Boolean); overload;
+procedure fnDownloadFile(nmFile : String);
+procedure fnShowSetting;
 
 var
   FCorner : TList<TCornerButton>;
@@ -73,7 +84,7 @@ var
   tabCount : Integer;
   tempTitle : array of String;
 
-  username, password : String;
+  aIDUser, aUsername, aPassword : String;
 
   //PERMISSION
   FPermissionReadExternalStorage, FAccess_Coarse_Location, FAccess_Fine_Location,
@@ -81,7 +92,9 @@ var
 
 implementation
 
-uses frMain, uFunc, uGoFrame, uOpenUrl, uRest;
+uses frMain, uFunc, uGoFrame, uOpenUrl, uRest, frFeed, frHome, frImam,
+  frInformasi, frJadwalImamSholat, frKajian, frLoading, frLogin, frMenu,
+  frMFeed, frMInformasi, frMJamaah, frMKajian;
 
 procedure fnTransitionFrame(from, go : TControl; faFrom, faGo : TFloatAnimation; prs : String);
 var
@@ -166,7 +179,7 @@ procedure fnSetFooter;
 begin
   if (goFrame = LOADING) OR (goFrame = LOGIN) OR (goFrame = MENUADMIN) OR (goFrame = MJAMAAH) OR (goFrame = MJADWALIMAM)
    OR (goFrame = MTPQ) OR (goFrame = MJADWALKAJIAN) OR (goFrame = MKEUANGAN) OR (goFrame = MPENGUMUMAN) OR (goFrame = MAKUN)
-   OR (goFrame = MPROSESJADWAL) then begin
+   OR (goFrame = MPROSESJADWAL) OR (goFrame = MFEED) then begin
     FMain.loFooter.Visible := False;
   end else begin
     FMain.loFooter.Visible := True;
@@ -189,7 +202,8 @@ end;
 procedure fnHideFrame(from : String);
 begin
   if fromFrame <> '' then
-    frFrom.Visible := False;
+    if Assigned(frFrom) then
+      frFrom.Visible := False;
 
   frFrom := nil;
   frGo := nil;
@@ -197,7 +211,23 @@ end;
 
 procedure fnBack;
 begin
+  if (goFrame = FEED) then begin
 
+  end else if (goFrame = INFORMASI) or (goFrame = KAJIAN) or (goFrame = IMAM) then begin
+    fnGoFrame(goFrame, FEED);
+  end else if (goFrame = MJAMAAH) then begin
+    FMJamaah.fnGoBack;
+  end else if (goFrame = MJADWALIMAM) then begin
+    FJadwalImam.fnGoBack;
+  end else if (goFrame = MJADWALKAJIAN) then begin
+    FMKajian.fnGoBack;
+  end else if (goFrame = MFEED) then begin
+    FMFeed.fnGoBack;
+  end else if (goFrame = MPENGUMUMAN) then begin
+    FMInformasi.fnGoBack;
+  end else if (goFrame = MFEED) then begin
+    FMFeed.fnGoBack;
+  end;
 end;
 
 
@@ -227,6 +257,14 @@ begin
   end;
 end;
 
+procedure fnLoadIndicator(ani : TAniIndicator; isActive : Boolean);
+begin
+  TThread.Synchronize(nil, procedure begin
+    ani.Enabled := isActive;
+    ani.Visible := isActive;
+  end);
+end;
+
 procedure fnGetE(Msg, Cls : String); overload;
 begin
   TThread.Synchronize(nil, procedure
@@ -254,7 +292,7 @@ begin
   with FMain do begin
     TThread.Synchronize(nil, procedure
     begin
-      //TM.Toast(UpperCase(str));
+      TM.Toast(UpperCase(str));
     end);
   end;
 end;
@@ -393,6 +431,62 @@ begin
   //Result.DisposeOf;
 end;
 
+procedure fnShowReload(AEvent : TNotifyEvent);
+begin
+  TThread.Synchronize(nil, procedure begin
+    FMain.loReload.Visible := True;
+    FMain.btnUlang.OnClick := AEvent
+  end);
+end;
+
+procedure fnShowReload(isVisible : Boolean);
+begin
+  TThread.Synchronize(nil, procedure begin
+    FMain.loReload.Visible := isVisible;
+    FMain.btnUlang := nil;
+  end);
+end;
+
+procedure fnDownloadFile(nmFile : String);
+var
+  HTTP : TNetHTTPClient;
+  Stream : TMemoryStream;
+begin
+  HTTP := TNetHTTPClient.Create(nil);
+  try
+    Stream := TMemoryStream.Create;
+    try
+      HTTP.Get(imgURL + nmFile, Stream);
+      TThread.Synchronize(nil, procedure begin
+        Stream.SaveToFile(fnLoadFile(nmFile));
+      end);
+
+    finally
+      Stream.DisposeOf;
+    end;
+  finally
+    HTTP.DisposeOf;
+  end;
+end;
+
+procedure fnShowSetting;
+begin
+  with FMain do begin
+    if not loSetting.Visible then begin
+      loSetting.Position.X := FMain.Width + 100;
+      faPosX.StartValue := loSetting.Position.X;
+      faPosX.StopValue := FMain.Width - (loSetting.Width + 12);
+
+      loSetting.Visible := True;
+
+      faPosX.Enabled := True;
+    end else begin
+      loSetting.Visible := False;
+    end;
+  end;
+end;
+
+
 procedure fnClickBtn(B : TCornerButton);
 var
   i: Integer;
@@ -428,8 +522,8 @@ end;
 
 procedure fnLoadUserINI;
 begin
-  username := LoadSettingString('user', 'usr','');
-  password := LoadSettingString('user', 'password','');
+  aUsername := LoadSettingString('user', 'usr','');
+  aPassword := LoadSettingString('user', 'password','');
 end;
 
 end.

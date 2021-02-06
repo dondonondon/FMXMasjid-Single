@@ -7,6 +7,8 @@ program prjTemplateFMX;
 uses
   System.StartUpCopy,
   FMX.Forms,
+  System.SysUtils,
+  System.Classes,
   {$IF DEFINED (ANDROID)}
   FMX.FontGlyphs.Android in 'sources\FMX.FontGlyphs.Android.pas',
   {$ENDIF }
@@ -24,9 +26,19 @@ uses
   frHome in 'frames\frHome.pas' {FHome: TFrame},
   frFeed in 'frames\frFeed.pas' {FFeed: TFrame},
   frMenu in 'frames\admin\frMenu.pas' {FMenu: TFrame},
-  frMJamaah in 'frames\admin\frMJamaah.pas' {FMJamaah: TFrame};
+  frMJamaah in 'frames\admin\frMJamaah.pas' {FMJamaah: TFrame},
+  frJadwalImamSholat in 'frames\admin\frJadwalImamSholat.pas' {FJadwalImam: TFrame},
+  frMFeed in 'frames\admin\frMFeed.pas' {FMFeed: TFrame},
+  frMKajian in 'frames\admin\frMKajian.pas' {FMKajian: TFrame},
+  frMInformasi in 'frames\admin\frMInformasi.pas' {FMInformasi: TFrame},
+  frInformasi in 'frames\frInformasi.pas' {FInformasi: TFrame},
+  frKajian in 'frames\frKajian.pas' {FKajian: TFrame},
+  frImam in 'frames\frImam.pas' {FImam: TFrame},
+  frAkun in 'frames\frAkun.pas' {FAkun: TFrame};
 
 {$R *.res}
+var
+  FormatBr: TFormatSettings;
 
 begin
   ReportMemoryLeaksOnShutdown := True;
@@ -35,6 +47,23 @@ begin
   Application.CreateForm(TFMain, FMain);
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TFMain, FMain);
+  Application.CreateForm(TFMKajian, FMKajian);
+  try
+    begin
+      FormatBr                     := TFormatSettings.Create;
+      FormatBr.DecimalSeparator    := '.';
+      FormatBr.ThousandSeparator   := ',';
+      FormatBr.DateSeparator       := '-';
+      FormatBr.ShortDateFormat     := 'yyyy-mm-dd';
+      FormatBr.LongDateFormat      := 'yyyy-mm-dd hh:nn:ss';
+      FormatBr.ShortTimeFormat     := 'hh:nn';
+      FormatBr.LongTimeFormat      := 'hh:nn:ss';
+
+      System.SysUtils.FormatSettings := FormatBr;
+    end;
+  except
+    Application.Terminate;
+  end;
   Application.Run;
 end.
 

@@ -34,6 +34,8 @@ procedure fnExecSQL(Query: TFDQuery); overload;
 procedure fnSQLParamByName(Query: TFDQuery; ParamStr: string; Value: Variant); overload;
 procedure prExplodeStr(SourceStr: string; Delimiter: char; var List: TStringList);
 
+function fnGetLocation : String;
+
 procedure fnLoadImage(img : TImage; nmFile : String); overload;
 procedure fnLoadImage(img : TRectangle; nmFile : String); overload;
 procedure fnLoadImage(img : TCircle; nmFile : String); overload;
@@ -56,6 +58,10 @@ procedure fnSaveImg(img : TCircle; nmFile : String; min : Integer); overload;
 procedure fnDeleteFile(nmFile : String);
 
 procedure fnSetSizeImage(img : TImage; min : Integer);
+function fnResizeImage(ABitmap : TBitmap; sz : Integer) : TBitmap;
+function fnResizeImageH(ABitmap : TBitmap; sz : Integer) : TBitmap;
+function fnResizeImageW(ABitmap : TBitmap; sz : Integer) : TBitmap;
+function fnSetImgSize(ABitmap : TBitmap; sz : Integer) : TBitmap;
 
 procedure fnDecodeImg(img : TImage; str : String); overload;
 procedure fnDecodeImg(img : TRectangle; str : String); overload;
@@ -262,6 +268,21 @@ begin
   Query.Params.ParamByName(ParamStr).Value := Value
 end;
 
+function fnGetLocation : String;
+var
+  loc : String;
+begin
+  {$IF DEFINED(IOS) or DEFINED(ANDROID)}
+    loc := TPath.GetDocumentsPath + PathDelim;
+  {$ELSEIF Defined(MSWINDOWS)}
+    loc := gsAppPath + 'assets' + PathDelim;
+    if not DirectoryExists(loc) then
+      CreateDir(loc);
+  {$ENDIF}
+
+  Result := loc;
+end;
+
 procedure fnLoadImage(img : TImage; nmFile : String);
 var
   xx, loc, locTemp : String;
@@ -273,11 +294,7 @@ begin
   img.BeginUpdate;
 
   try
-    {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-      xx := TPath.GetDocumentsPath + PathDelim;
-    {$ELSEIF Defined(MSWINDOWS)}
-      xx := gsAppPath + 'img' + PathDelim;
-    {$ENDIF}
+    xx := fnGetLocation;
 
     loc := xx + nmFile;
     locTemp := xx + 'kosong.png';
@@ -300,11 +317,7 @@ var
 begin
   img.BeginUpdate;
   try
-    {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-      xx := TPath.GetDocumentsPath + PathDelim;
-    {$ELSEIF Defined(MSWINDOWS)}
-      xx := gsAppPath + 'img' + PathDelim;
-    {$ENDIF}
+    xx := fnGetLocation;
 
     loc := xx + nmFile;
     locTemp := xx + 'kosong.png';
@@ -324,11 +337,7 @@ var
 begin
   img.BeginUpdate;
   try
-    {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-      xx := TPath.GetDocumentsPath + PathDelim;
-    {$ELSEIF Defined(MSWINDOWS)}
-      xx := gsAppPath + 'img' + PathDelim;
-    {$ENDIF}
+    xx := fnGetLocation;
 
     loc := xx + nmFile;
     locTemp := xx + 'kosong.png';
@@ -354,11 +363,7 @@ begin
 
   img.BeginUpdate;
   try
-    {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-      xx := TPath.GetDocumentsPath + PathDelim;
-    {$ELSEIF Defined(MSWINDOWS)}
-      xx := gsAppPath + 'img' + PathDelim;
-    {$ENDIF}
+    xx := fnGetLocation;
 
     loc := xx + nmFile;
     locTemp := xx + 'kosong.png';
@@ -401,11 +406,7 @@ var
 begin
     img.BeginUpdate;
   try
-    {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-      xx := TPath.GetDocumentsPath + PathDelim;
-    {$ELSEIF Defined(MSWINDOWS)}
-      xx := gsAppPath + 'img' + PathDelim;
-    {$ENDIF}
+    xx := fnGetLocation;
 
     loc := xx + nmFile;
     locTemp := xx + 'kosong.png';
@@ -445,11 +446,7 @@ var
 begin
   img.BeginUpdate;
   try
-    {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-      xx := TPath.GetDocumentsPath + PathDelim;
-    {$ELSEIF Defined(MSWINDOWS)}
-      xx := gsAppPath + 'img' + PathDelim;
-    {$ENDIF}
+    xx := fnGetLocation;
 
     loc := xx + nmFile;
     locTemp := xx + 'kosong.png';
@@ -488,11 +485,7 @@ var
   xx, loc, locTemp : String;
   temp : TImage;
 begin
-  {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-    xx := TPath.GetDocumentsPath + PathDelim;
-  {$ELSEIF Defined(MSWINDOWS)}
-    xx := gsAppPath + 'img' + PathDelim;
-  {$ENDIF}
+  xx := fnGetLocation;
 
   loc := xx + nmFile;
   locTemp := xx + 'kosong.png';
@@ -513,11 +506,7 @@ function fnLoadImage(nmFile : String; usingThread : Boolean = False): String;
 var
   xx, loc, locTemp : String;
 begin
-  {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-    xx := TPath.GetDocumentsPath + PathDelim;
-  {$ELSEIF Defined(MSWINDOWS)}
-    xx := gsAppPath + 'img' + PathDelim;
-  {$ENDIF}
+  xx := fnGetLocation;
 
   loc := xx + nmFile;
   locTemp := xx + 'kosong.png';
@@ -552,13 +541,11 @@ function fnLoadFile(str : String): String;
 var
   xx, loc, locTemp : String;
 begin
-  {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-    xx := TPath.GetDocumentsPath + PathDelim;
-  {$ELSEIF Defined(MSWINDOWS)}
-    xx := gsAppPath;
-  {$ENDIF}
-
-  Result := xx + str;
+  xx := fnGetLocation;
+  {if not FileExists(xx + str) then
+    Result := xx + 'kosong.png'
+  else}
+    Result := xx + str;
 end;
 
 procedure fnLoadImgFromUrl(url: String; bmps: TImage);
@@ -697,11 +684,7 @@ procedure fnSaveImg(img : TImage; nmFile : String);
 var
   xx: String;
 begin
-  {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-    xx := TPath.GetDocumentsPath + PathDelim;
-  {$ELSEIF Defined(MSWINDOWS)}
-    xx := gsAppPath + 'img' + PathDelim;
-  {$ENDIF}
+  xx := fnGetLocation;
   xx := fnReplaceStr(xx, '\\','\');
   img.Bitmap.SaveToFile(xx + nmFile);
 end;
@@ -722,16 +705,50 @@ begin
   end;
 end;
 
+function fnResizeImage(ABitmap : TBitmap; sz : Integer) : TBitmap;
+var
+  sf : Single;
+begin
+  sf := ABitmap.Width / sz;
+  ABitmap.Resize(Round(ABitmap.Width / sf), Round(ABitmap.Height / sf));
+
+  Result := ABitmap;
+end;
+
+function fnResizeImageH(ABitmap : TBitmap; sz : Integer) : TBitmap;
+var
+  sf : Single;
+begin
+  sf := ABitmap.Height / sz;
+  ABitmap.Resize(Round(ABitmap.Width / sf), Round(ABitmap.Height / sf));
+
+  Result := ABitmap;
+end;
+
+function fnResizeImageW(ABitmap : TBitmap; sz : Integer) : TBitmap;
+var
+  sf : Single;
+begin
+  sf := ABitmap.Width / sz;
+  ABitmap.Resize(Round(ABitmap.Width / sf), Round(ABitmap.Height / sf));
+
+  Result := ABitmap;
+end;
+
+function fnSetImgSize(ABitmap : TBitmap; sz : Integer) : TBitmap;
+begin
+  if ABitmap.Width > ABitmap.Height then
+    Result := fnResizeImageW(ABitmap, sz)
+  else
+    Result := fnResizeImageH(ABitmap, sz)
+end;
+
 procedure fnSaveImg(img : TImage; nmFile : String; min : Integer);
 var
   xx: String;
   w, h : Integer;
 begin
-  {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-    xx := TPath.GetDocumentsPath + PathDelim;
-  {$ELSEIF Defined(MSWINDOWS)}
-    xx := gsAppPath + 'img' + PathDelim;
-  {$ENDIF}
+  xx := fnGetLocation;
   w := img.Bitmap.Width;
   h := img.Bitmap.Height;
 
@@ -752,11 +769,7 @@ var
   xx: String;
   w, h : Integer;
 begin
-  {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-    xx := TPath.GetDocumentsPath + PathDelim;
-  {$ELSEIF Defined(MSWINDOWS)}
-    xx := gsAppPath + 'img' + PathDelim;
-  {$ENDIF}
+  xx := fnGetLocation;
   w := img.Fill.Bitmap.Bitmap.Width;
   h := img.Fill.Bitmap.Bitmap.Height;
 
@@ -777,11 +790,7 @@ var
   xx: String;
   w, h : Integer;
 begin
-  {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-    xx := TPath.GetDocumentsPath + PathDelim;
-  {$ELSEIF Defined(MSWINDOWS)}
-    xx := gsAppPath + 'img' + PathDelim;
-  {$ENDIF}
+  xx := fnGetLocation;
   w := img.Fill.Bitmap.Bitmap.Width;
   h := img.Fill.Bitmap.Bitmap.Height;
 
@@ -801,11 +810,7 @@ procedure fnDeleteFile(nmFile : String);
 var
   xx: String;
 begin
-  {$IF DEFINED(IOS) or DEFINED(ANDROID)}
-    xx := TPath.GetDocumentsPath + PathDelim;
-  {$ELSEIF Defined(MSWINDOWS)}
-    xx := gsAppPath;
-  {$ENDIF}
+  xx := fnGetLocation;
 
   if FileExists(xx + nmFile) then
     DeleteFile(xx + nmFile);
@@ -1158,7 +1163,7 @@ begin
   stg.EndUpdate;
 end;
 
-function fnDateMonthEnToId(str : String): String;
+function fnDateDayEnToId(str : String): String;
 var
   hari : String;
 begin
@@ -1182,7 +1187,7 @@ begin
   Result := hari;
 end;
 
-function fnDateDayEnToId(str : String): String;
+function fnDateMonthEnToId(str : String): String;
 var
   bulan : String;
 begin
@@ -1351,12 +1356,20 @@ begin
    if s = '' then
      str := ''
    else begin
-     str := Uppercase(s[1]);
+    str := '';
+
+    for i := 1 to Length(s) do begin
+      if i = 1 then
+        str := str + UpperCase(Copy(s, i, 1))
+      else
+        str := str + LowerCase(Copy(s, i, 1));
+    end;
+     {str := Uppercase(s[1]);
      for i := 2 to Length(s) do
        if s[i - 1] = ' ' then
          str := str + Uppercase(s[i])
        else
-         str := str + Lowercase(s[i]);
+         str := str + Lowercase(s[i]);}
    end;
 
    Result := str;

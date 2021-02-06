@@ -8,7 +8,8 @@ uses
   FMX.Ani, FMX.Controls.Presentation, FMX.Layouts, FMX.Objects, FMX.DialogService,
   FMX.ListView.Types, FMX.ListView.Appearances, FMX.Platform, FMX.ListView.Adapters.Base, FMX.VirtualKeyboard,
   System.ImageList, FMX.ImgList, FMX.ScrollBox, FMX.Memo, FMX.TabControl,
-  FMX.Effects
+  FMX.Effects, UI.Toast, FMX.DateTimeCtrls, FMX.WebBrowser, FMX.Edit,
+  FMX.ListBox
   {$IF Defined(ANDROID)}
     ,Androidapi.JNI.AdMob, Androidapi.Helpers, FMX.Platform.Android,
     FMX.Helpers.Android, Androidapi.JNI.PlayServices, Androidapi.JNI.Os,
@@ -38,11 +39,26 @@ type
     reFooter: TRectangle;
     seFooter: TShadowEffect;
     gplFooter: TGridPanelLayout;
-    CornerButton2: TCornerButton;
-    CornerButton3: TCornerButton;
-    CornerButton4: TCornerButton;
-    CornerButton5: TCornerButton;
-    CornerButton6: TCornerButton;
+    btnFeed: TCornerButton;
+    btnInformasi: TCornerButton;
+    btnTPQ: TCornerButton;
+    btnImam: TCornerButton;
+    btnKajian: TCornerButton;
+    TM: TToastManager;
+    loReload: TLayout;
+    reReload: TRectangle;
+    loReloadMain: TLayout;
+    reImg: TRectangle;
+    btnUlang: TCornerButton;
+    ShadowEffect1: TShadowEffect;
+    ShadowEffect2: TShadowEffect;
+    loSetting: TLayout;
+    reSetting: TRectangle;
+    ShadowEffect3: TShadowEffect;
+    lbSetting: TListBox;
+    LOGIN: TListBoxItem;
+    ListBoxItem2: TListBoxItem;
+    faPosX: TFloatAnimation;
     procedure FormShow(Sender: TObject);
     procedure FormVirtualKeyboardHidden(Sender: TObject;
       KeyboardVisible: Boolean; const Bounds: TRect);
@@ -57,6 +73,9 @@ type
     procedure CornerButton1Click(Sender: TObject);
     procedure faGoXFinish(Sender: TObject);
     procedure fnCLickMenu(Sender : TObject);
+    procedure faPosXFinish(Sender: TObject);
+    procedure lbSettingItemClick(const Sender: TCustomListBox;
+      const Item: TListBoxItem);
   private
     {Keyboard}
     FService1 : IFMXVirtualKeyboardToolbarService;
@@ -82,7 +101,7 @@ implementation
 
 {$R *.fmx}
 
-uses uFunc, uMain, uGoFrame, uRest, uDM;
+uses uFunc, uMain, uGoFrame, uRest, uDM, frFeed, frInformasi, frKajian, frImam;
 
 procedure TFMain.CalcContentBoundsProc(Sender: TObject;
   var ContentBounds: TRectF);
@@ -136,12 +155,37 @@ begin
   F.Enabled := False;
 end;
 
+procedure TFMain.faPosXFinish(Sender: TObject);
+begin
+  faPosX.Enabled := False;
+end;
+
 procedure TFMain.fnCLickMenu(Sender: TObject);
 var
   B : TCornerButton;
 begin
+
   B := TCornerButton(Sender);
+
+  if B.Hint = 'COMING SOON' then begin
+    fnShowE('FITUR AKAN SEGERA TERSEDIA');
+    Exit;
+  end;
   fnClickBtn(B);
+
+  if goFrame = B.Hint then begin
+    if goFrame = FEED then begin
+      FFeed.fnClickFeed;
+    end else if goFrame = INFORMASI then begin
+      FInformasi.fnClickMenu;
+    end else if goFrame = KAJIAN then begin
+      FKajian.fnClickMenu;
+    end else if goFrame = IMAM then begin
+      FImam.fnClickMenu;
+    end;
+  end else begin
+    fnGoFrame(goFrame, B.Hint);
+  end;
 end;
 
 procedure TFMain.FormCreate(Sender: TObject);
@@ -165,7 +209,7 @@ begin
     BorderStyle := TFmxFormBorderStyle.Single;
     FullScreen := False;
 
-    tcMain.TabPosition := TTabPosition.Dots;
+    //tcMain.TabPosition := TTabPosition.Dots;
 
 
   {$ENDIF}
@@ -175,6 +219,9 @@ end;
 
 procedure TFMain.FormFocusChanged(Sender: TObject);
 begin
+  if loSetting.Visible then
+    fnShowSetting;
+
   UpdateKBBounds;
 end;
 
@@ -246,6 +293,16 @@ begin
   UpdateKBBounds;
 end;
 
+procedure TFMain.lbSettingItemClick(const Sender: TCustomListBox;
+  const Item: TListBoxItem);
+begin
+  if Item.ItemData.Detail <> 'EXIT' then begin
+    fnGoFrame(FEED, Item.ItemData.Detail);
+  end else begin
+    Application.Terminate;
+  end;
+end;
+
 procedure TFMain.RestorePosition;
 begin
   vsMain.ViewportPosition := PointF(vsMain.ViewportPosition.X, 0);
@@ -257,6 +314,8 @@ end;
 
 procedure TFMain.setForm;
 begin
+  aIDUser := '1';
+
   createFrame;
 
   fnGoFrame('', Loading);

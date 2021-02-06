@@ -11,8 +11,8 @@ uses
 type
   TFLogin = class(TFrame)
     loLogin: TLayout;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    edUsername: TEdit;
+    edPassword: TEdit;
     PasswordEditButton1: TPasswordEditButton;
     Label3: TLabel;
     CornerButton1: TCornerButton;
@@ -36,7 +36,7 @@ implementation
 
 {$R *.fmx}
 
-uses frMain, uFunc, uDM, uMain, uOpenUrl, uRest;
+uses frMain, uFunc, uDM, uMain, uOpenUrl, uRest, uLogin;
 
 { TFTemp }
 
@@ -51,7 +51,14 @@ end;
 
 procedure TFLogin.CornerButton1Click(Sender: TObject);
 begin
-  fnGoFrame(LOGIN, HOME);
+  if (edUsername.Text = '') or (edPassword.Text = '') then begin
+    fnShowE('FIELD TIDAK BOLEH KOSONG');
+    Exit;
+  end;
+
+  TTask.Run(procedure begin
+    fnLogin(edUsername.Text, MD5(edPassword.Text));
+  end).Start;
 end;
 
 procedure TFLogin.FirstShow;

@@ -3,13 +3,23 @@ unit frTemp;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Controls.Presentation, FMX.Layouts, System.Threading;
+  FMX.Controls.Presentation, FMX.Layouts, System.Threading, FMX.Effects,
+  FMX.Objects, System.Actions, FMX.ActnList, FMX.StdActns,
+  FMX.MediaLibrary.Actions, System.Permissions, FMX.DialogService, FMX.ListBox,
+  FMX.TabControl, FMX.ImgList, FMX.ScrollBox, FMX.Memo, System.Net.Mime,
+  FMX.Edit, FMX.SearchBox;
+
 
 type
   TFTemp = class(TFrame)
     loMain: TLayout;
+    loHeader: TLayout;
+    reHeader: TRectangle;
+    seHeader: TShadowEffect;
+    btnBack: TCornerButton;
+    btnHapus: TCornerButton;
     procedure FirstShow;
     procedure btnBackClick(Sender: TObject);
   private
@@ -58,7 +68,6 @@ end;
 
 procedure TFTemp.setFrame;
 begin
-  fnGetClient(FMain, FTemp);
 
   if statF then
     Exit;

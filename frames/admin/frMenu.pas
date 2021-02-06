@@ -22,15 +22,18 @@ type
     background: TRectangle;
     img: TImageList;
     seHeaderImg: TShadowEffect;
+    btnBackToFeed: TCornerButton;
     procedure FirstShow;
     procedure btnBackClick(Sender: TObject);
     procedure lbMenuItemClick(const Sender: TCustomListBox;
       const Item: TListBoxItem);
+    procedure btnBackToFeedClick(Sender: TObject);
   private
     statF : Boolean;
     procedure addMenu(menu : String; gl : Integer);
     procedure fnCekPermission;
     procedure setFrame;
+    procedure fnReload(Sender : TObject);
   public
     { Public declarations }
     procedure ReleaseFrame;
@@ -61,6 +64,8 @@ begin
   lb.Height := 130;//175;
   lb.Width := lbMenu.Width;
 
+  lb.Tag := gl;
+
   lb.Selectable := False;
 
   lb.Text := menu;
@@ -79,9 +84,17 @@ begin
   fnGoBack;
 end;
 
+procedure TFMenu.btnBackToFeedClick(Sender: TObject);
+begin
+  fnGoFrame(MENUADMIN, FEED);
+end;
+
 procedure TFMenu.FirstShow;
 begin
   setFrame;
+
+  if lbMenu.Items.Count > 0 then
+    Exit;
 
   lbMenu.Items.Clear;
   TTask.Run(procedure () begin
@@ -101,7 +114,7 @@ begin
   try
     sl := TStringList.Create;
     try
-      sl.AddPair('id', '1');
+      sl.AddPair('id', aIDUser);
       arr := fnPostJSON(DM.nHTTP, req, sl);
     finally
       sl.DisposeOf;
@@ -109,6 +122,7 @@ begin
 
     if arr[0,0] = 'null' then begin
       fnShowE(arr[1, 0]);
+      fnShowReload(fnReload);
       Exit;
     end;
 
@@ -121,17 +135,19 @@ begin
         else if arr[1, i] = 'JADWAL IMAM' then
           idx := 1
         else if arr[1, i] = 'KEGIATAN TPQ' then
-          idx := 2
+          idx := 8//2
         else if arr[1, i] = 'JADWAL KAJIAN' then
           idx := 3
         else if arr[1, i] = 'LAPORAN KEUANGAN' then
-          idx := 4
+          idx := 8//4
         else if arr[1, i] = 'PENGUMUMAN' then
           idx := 5
         else if arr[1, i] = 'AKUN' then
           idx := 6
         else if arr[1, i] = 'PROSES JADWAL' then
-          idx := 7;
+          idx := 8{7}
+        else if arr[1, i] = 'MANAJEMEN FEED' then
+          idx := 9{7};
 
         TThread.Synchronize(nil, procedure begin
           addMenu(arr[1, i], idx);
@@ -149,10 +165,23 @@ begin
   fnGoFrame(goFrame, fromFrame);
 end;
 
+procedure TFMenu.fnReload(Sender: TObject);
+begin
+  fnShowReload(False);
+  lbMenu.Items.Clear;
+  TTask.Run(procedure () begin
+    fnCekPermission;
+  end).Start;
+end;
+
 procedure TFMenu.lbMenuItemClick(const Sender: TCustomListBox;
   const Item: TListBoxItem);
 begin
-  fnGoFrame(MENUADMIN, MJAMAAH);
+  if Item.Tag = 8 then begin
+    fnShowE('FITUR AKAN SEGERA HADIR');
+    Exit;
+  end;
+  fnGoFrame(MENUADMIN, Item.Text);
 end;
 
 procedure TFMenu.ReleaseFrame;

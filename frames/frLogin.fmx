@@ -16,7 +16,7 @@ object FLogin: TFLogin
     Size.Height = 720.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
-    object Edit1: TEdit
+    object edUsername: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Anchors = [akLeft, akTop, akRight]
       StyleLookup = 'edMain'
@@ -29,7 +29,7 @@ object FLogin: TFLogin
       TextPrompt = 'Username'
       StyledSettings = [Family, Style, FontColor]
     end
-    object Edit2: TEdit
+    object edPassword: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Anchors = [akLeft, akTop, akRight]
       StyleLookup = 'edMain'

@@ -47,24 +47,24 @@ type
     lbProses: TListBox;
     ListBoxItem1: TListBoxItem;
     ListBoxItem2: TListBoxItem;
-    Edit1: TEdit;
+    edAlamat: TEdit;
     ListBoxItem3: TListBoxItem;
-    Edit2: TEdit;
+    edRT: TEdit;
     ListBoxItem4: TListBoxItem;
-    Edit3: TEdit;
+    edNoHp: TEdit;
     ListBoxItem5: TListBoxItem;
-    Edit4: TEdit;
+    edEmail: TEdit;
     ListBoxItem6: TListBoxItem;
-    Edit5: TEdit;
+    edPendidikan: TEdit;
     ListBoxItem7: TListBoxItem;
-    Edit6: TEdit;
+    edPekerjaan: TEdit;
     ListBoxItem8: TListBoxItem;
-    Edit7: TEdit;
+    edJmlKeluarga: TEdit;
     ListBoxItem9: TListBoxItem;
-    Edit8: TEdit;
+    edPengeluaran: TEdit;
     ListBoxItem10: TListBoxItem;
-    Edit10: TEdit;
-    gsr1: TSwitch;
+    edRW: TEdit;
+    swImam: TSwitch;
     Label10: TLabel;
     ListBoxItem11: TListBoxItem;
     btnProses: TCornerButton;
@@ -74,6 +74,7 @@ type
     Rectangle1: TRectangle;
     lbFind: TListBox;
     edFind: TSearchBox;
+    lblIsImam: TLabel;
     procedure FirstShow;
     procedure btnBackClick(Sender: TObject);
     procedure lbMainItemClick(const Sender: TCustomListBox;
@@ -89,14 +90,20 @@ type
     procedure lbProsesViewportPositionChange(Sender: TObject;
       const OldViewportPosition, NewViewportPosition: TPointF;
       const ContentSizeChanged: Boolean);
+    procedure btnClearClick(Sender: TObject);
+    procedure btnHapusClick(Sender: TObject);
+    procedure edPendidikanChange(Sender: TObject);
   private
     statF : Boolean;
-    sProses : Integer;
+    sProses : String;
     tempEdit : TEdit;
+    transID : String;
     procedure setFrame;
     procedure addItem(idx : Integer; nm, alamat, rtrw, nohp, email, pendidikan, pekerjaan, jml_keluarga, pengeluaran, isImam : String);
     procedure fnLoadData;
     procedure fnSetHeightLB;
+    procedure fnClear;
+    procedure fnProses;
   public
     { Public declarations }
     procedure ReleaseFrame;
@@ -117,9 +124,9 @@ uses frMain, uFunc, uDM, uMain, uOpenUrl, uRest;
 const
   spc = 10;
   pad = 8;
-  TAMBAH  = 0;
-  UBAH    = 1;
-  HAPUS   = 2;
+  TAMBAH  = 'insert';
+  UBAH    = 'update';
+  HAPUS   = 'delete';
 
 procedure TFMJamaah.addItem(idx : Integer; nm, alamat, rtrw, nohp, email, pendidikan,
   pekerjaan, jml_keluarga, pengeluaran, isImam: String);
@@ -136,6 +143,7 @@ begin
   lblPekerjaan.Text := ': ' + pekerjaan;
   lblJmlKeluarga.Text := ': ' + jml_keluarga;
   lblPengeluaran.Text := ': ' + pengeluaran;
+  lblIsImam.Text := isImam;
 
   if isImam = '1' then begin
     reTemp.Fill.Color := $FFB3CECB;
@@ -175,7 +183,11 @@ end;
 
 procedure TFMJamaah.btnAddClick(Sender: TObject);
 begin
+  fnClear;
   sProses := TAMBAH;
+
+  btnHapus.Visible := False;
+
   tcMain.Next;
 end;
 
@@ -184,13 +196,33 @@ begin
   fnGoBack;
 end;
 
-procedure TFMJamaah.btnProsesClick(Sender: TObject);
-var
-  i : Integer;
+procedure TFMJamaah.btnClearClick(Sender: TObject);
 begin
-  for i := 0 to lbProses.Items.Count - 1 do begin
-    fnGetE(lbProses.ItemByIndex(i).Position.Y.ToString, '');
+  fnClear;
+end;
+
+procedure TFMJamaah.btnHapusClick(Sender: TObject);
+begin
+  sProses := HAPUS;
+  TTask.Run(procedure begin
+    fnProses;
+  end).Start;
+end;
+
+procedure TFMJamaah.btnProsesClick(Sender: TObject);
+begin
+  FrameClick(Sender);
+  if (edNama.Text = '') or (edAlamat.Text = '') or (edRT.Text = '') or (edNoHp.Text = '') or (edEmail.Text = '')
+   or (edPendidikan.Text = '') or (edPekerjaan.Text = '') or (edJmlKeluarga.Text = '') or (edPengeluaran.Text = '')
+   or (edRW.Text = '') then begin
+
+   fnShowE('FIELD TIDAK DIISI DENGAN BENAR');
+   Exit;
   end;
+
+  TTask.Run(procedure begin
+    fnProses;
+  end).Start;
 end;
 
 procedure TFMJamaah.edNamaTyping(Sender: TObject);
@@ -233,6 +265,15 @@ begin
   end;
 end;
 
+procedure TFMJamaah.edPendidikanChange(Sender: TObject);
+var
+  E : TEdit;
+  L : TListBoxItem;
+begin
+  E := TEdit(Sender);
+  setEdit(E);
+end;
+
 procedure TFMJamaah.fnSetHeightLB;
 begin
   loFind.Height := (lbFind.Items.Count) * 25 + 14;
@@ -241,9 +282,27 @@ end;
 procedure TFMJamaah.FirstShow;
 begin
   setFrame;
+  lbMain.Items.Clear;
   TTask.Run(procedure begin
+    Sleep(Idle);
     fnLoadData;
   end).Start;
+end;
+
+procedure TFMJamaah.fnClear;
+begin
+  edNama.Text := '';
+  edAlamat.Text := '';
+  edRT.Text := '';
+  edNoHp.Text := '';
+  edEmail.Text := '';
+  edPendidikan.Text := '';
+  edPekerjaan.Text := '';
+  edJmlKeluarga.Text := '';
+  edPengeluaran.Text := '';
+  edRW.Text := '';
+
+  swImam.IsChecked := False;
 end;
 
 procedure TFMJamaah.fnGoBack;
@@ -251,10 +310,14 @@ begin
   if tcMain.TabIndex = 0 then begin
     fnGoFrame(goFrame, fromFrame);
   end else begin
+    lbProses.ViewportPosition := TPointF.Zero;
+
     tcMain.Previous;
     loFind.Visible := False;
     btnHapus.Visible := False;
     tempEdit := nil;
+
+    fnClear;
   end;
 end;
 
@@ -293,7 +356,63 @@ begin
           arr[9, i],
           arr[10, i]);
       end);
+
+      Sleep(5);
     end;
+  finally
+    fnLoadLoading(False);
+  end;
+end;
+
+procedure TFMJamaah.fnProses;
+var
+  arr : TStringArray;
+  req, str : String;
+  i, idx: Integer;
+  sl : TStringList;
+begin
+  fnLoadLoading(True);
+  req :=  sProses + 'Jamaah';
+  try
+    sl := TStringList.Create;
+    try
+      if (sProses = HAPUS) or (sProses = UBAH) then
+        sl.AddPair('id', transID);
+
+      if (sProses = TAMBAH) or (sProses = UBAH) then begin
+        sl.AddPair('nm_jamaah', edNama.Text);
+        sl.AddPair('alamat', edAlamat.Text);
+        sl.AddPair('rt', edRT.Text);
+        sl.AddPair('rw', edRW.Text);
+        sl.AddPair('nohp', edNoHp.Text);
+        sl.AddPair('email', edEmail.Text);
+        sl.AddPair('pendidikan', edPendidikan.Text);
+        sl.AddPair('pekerjaan', edPekerjaan.Text);
+        sl.AddPair('jml_keluarga', edJmlKeluarga.Text);
+        sl.AddPair('pengeluaran_rumah_tangga', edPengeluaran.Text);
+        if swImam.IsChecked then
+          sl.AddPair('isImam', '1')
+        else
+          sl.AddPair('isImam', '0')
+      end;
+
+      arr := fnPostJSON(DM.nHTTP, req, sl);
+    finally
+      sl.DisposeOf;
+    end;
+
+    if arr[0,0] = 'null' then begin
+      fnShowE(arr[1, 0]);
+      Exit;
+    end;
+
+    fnLoadData;
+
+    TThread.Synchronize(nil, procedure begin
+      fnClear;
+      tcMain.Previous;
+    end);
+
   finally
     fnLoadLoading(False);
   end;
@@ -326,8 +445,8 @@ end;
 var
   i: Integer;
   lo : TLayout;
+  s : String;
 begin
-  //ShowMessage(TLayout(Item.FindStyleResource('lbMenu')).Tag.ToString);
   for i := 0 to Item.ControlsCount - 1 do begin
     if Item.Controls[i] is TLayout then
       if TLayout(Item.Controls[i]).StyleName = 'loTemp' then begin
@@ -335,7 +454,36 @@ begin
         Break;
       end;
   end;
-  ShowMessage(getText(lo, 'lblAlamat'));
+
+  transID := Item.Tag.ToString;
+
+  edNama.Text := getText(lo, lblNama.Name);
+  edAlamat.Text := getText(lo, lblAlamat.Name);
+
+  s := getText(lo, lblRTRW.Name);
+  SetLength(s,pos('/',s)-1);
+  edRT.Text := s;
+
+  s := getText(lo, lblRTRW.Name);
+  Delete(s,1,pos('/',s));
+  edRW.Text := s;
+
+  edNoHp.Text := getText(lo, lblNoHp.Name);
+  edEmail.Text := getText(lo, lblEmail.Name);
+  edPendidikan.Text := getText(lo, lblPendidikan.Name);
+  edPekerjaan.Text := getText(lo, lblPekerjaan.Name);
+  edJmlKeluarga.Text := getText(lo, lblJmlKeluarga.Name);
+  edPengeluaran.Text := getText(lo, lblPengeluaran.Name);
+
+  if getText(lo, lblIsImam.Name) = '1' then
+    swImam.IsChecked := True
+  else
+    swImam.IsChecked := False;
+
+  btnHapus.Visible := True;
+
+  sProses := UBAH;
+  tcMain.Next;
 end;
 
 procedure TFMJamaah.lbProsesItemClick(const Sender: TCustomListBox;

@@ -1,0 +1,620 @@
+object FJadwalImam: TFJadwalImam
+  Size.Width = 360.000000000000000000
+  Size.Height = 720.000000000000000000
+  Size.PlatformDefault = False
+  OnClick = FrameClick
+  object tcMain: TTabControl
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.Y = 50.000000000000000000
+    Size.Width = 360.000000000000000000
+    Size.Height = 670.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'tcMain'
+    TabIndex = 0
+    TabOrder = 2
+    TabPosition = None
+    OnClick = FrameClick
+    Sizes = (
+      360s
+      670s
+      360s
+      670s)
+    object tiData: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'tiData'
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object lbMain: TListBox
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Size.Width = 360.000000000000000000
+        Size.Height = 670.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentlistboxstyle'
+        TabOrder = 0
+        ShowScrollBars = False
+        DisableFocusEffect = True
+        DefaultItemStyles.ItemStyle = ''
+        DefaultItemStyles.GroupHeaderStyle = ''
+        DefaultItemStyles.GroupFooterStyle = ''
+        OnItemClick = lbMainItemClick
+        Viewport.Width = 360.000000000000000000
+        Viewport.Height = 630.000000000000000000
+        object SearchBox1: TSearchBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          StyleLookup = 'edLV'
+          TabOrder = 0
+          Size.Width = 360.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object btnAdd: TCornerButton
+        Anchors = [akRight, akBottom]
+        ClipParent = True
+        Images = DM.img
+        ImageIndex = 9
+        Position.X = 292.000000000000000000
+        Position.Y = 600.000000000000000000
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 54.000000000000000000
+        Size.Height = 54.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'btnImg'
+        TabOrder = 1
+        XRadius = 3.000000000000000000
+        YRadius = 3.000000000000000000
+        OnClick = btnAddClick
+      end
+    end
+    object tiProses: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'tiProses'
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object lbProses: TListBox
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Size.Width = 360.000000000000000000
+        Size.Height = 670.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentlistboxstyle'
+        TabOrder = 0
+        OnClick = FrameClick
+        ShowScrollBars = False
+        DisableFocusEffect = True
+        DefaultItemStyles.ItemStyle = ''
+        DefaultItemStyles.GroupHeaderStyle = ''
+        DefaultItemStyles.GroupFooterStyle = ''
+        Viewport.Width = 360.000000000000000000
+        Viewport.Height = 670.000000000000000000
+        object ListBoxItem1: TListBoxItem
+          Selectable = False
+          Size.Width = 360.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          object dtSholat: TDateEdit
+            Date = 44226.000000000000000000
+            Position.X = 12.000000000000000000
+            Position.Y = 33.000000000000000000
+            Size.Width = 336.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'dtMain'
+            StyledSettings = [Family, FontColor]
+            TabOrder = 0
+            TextSettings.Font.Size = 11.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.HorzAlign = Center
+          end
+          object Label2: TLabel
+            Anchors = [akLeft, akTop, akRight]
+            StyledSettings = [Family]
+            Position.X = 12.000000000000000000
+            Position.Y = 16.000000000000000000
+            Size.Width = 309.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 13.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.FontColor = xFF1D6E63
+            Text = 'Tanggal Sholat'
+            TabOrder = 1
+          end
+        end
+        object ListBoxItem2: TListBoxItem
+          Selectable = False
+          Position.Y = 65.000000000000000000
+          Size.Width = 360.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Label3: TLabel
+            Anchors = [akLeft, akTop, akRight]
+            StyledSettings = [Family]
+            Position.X = 12.000000000000000000
+            Position.Y = 16.000000000000000000
+            Size.Width = 309.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 13.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.FontColor = xFF1D6E63
+            Text = 'Waktu Sholat'
+            TabOrder = 0
+          end
+          object btnWaktuSholat: TCornerButton
+            Tag = 1
+            Corners = []
+            StyledSettings = [Family, Style]
+            Hint = 'waktusholat'
+            Position.X = 12.000000000000000000
+            Position.Y = 33.000000000000000000
+            Sides = [Bottom]
+            Size.Width = 336.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'btnEdit'
+            TabOrder = 1
+            Text = 'Pilih Waktu Sholat'
+            TextSettings.Font.Size = 11.000000000000000000
+            TextSettings.FontColor = xFF0C0C0C
+            TextSettings.HorzAlign = Leading
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = btnWaktuSholatClick
+          end
+        end
+        object ListBoxItem3: TListBoxItem
+          Selectable = False
+          Position.Y = 130.000000000000000000
+          Size.Width = 360.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object btnCalonImam: TCornerButton
+            Corners = []
+            StyledSettings = [Family, Style]
+            Position.X = 12.000000000000000000
+            Position.Y = 33.000000000000000000
+            Sides = [Bottom]
+            Size.Width = 336.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'btnEdit'
+            TabOrder = 1
+            Text = 'Pilih Calon Imam'
+            TextSettings.Font.Size = 11.000000000000000000
+            TextSettings.FontColor = xFF0C0C0C
+            TextSettings.HorzAlign = Leading
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = btnWaktuSholatClick
+          end
+          object Label6: TLabel
+            Anchors = [akLeft, akTop, akRight]
+            StyledSettings = [Family]
+            Position.X = 12.000000000000000000
+            Position.Y = 16.000000000000000000
+            Size.Width = 309.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 13.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.FontColor = xFF1D6E63
+            Text = 'Calon Imam'
+            TabOrder = 0
+          end
+        end
+        object ListBoxItem4: TListBoxItem
+          Selectable = False
+          Position.Y = 195.000000000000000000
+          Size.Width = 360.000000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object btnCalonCadanganImam: TCornerButton
+            Corners = []
+            StyledSettings = [Family, Style]
+            Hint = 'cadangan'
+            Position.X = 12.000000000000000000
+            Position.Y = 33.000000000000000000
+            Sides = [Bottom]
+            Size.Width = 336.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'btnEdit'
+            TabOrder = 1
+            Text = 'Pilih Calon Cadangan Imam'
+            TextSettings.Font.Size = 11.000000000000000000
+            TextSettings.FontColor = xFF0C0C0C
+            TextSettings.HorzAlign = Leading
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = btnWaktuSholatClick
+          end
+          object Label7: TLabel
+            Anchors = [akLeft, akTop, akRight]
+            StyledSettings = [Family]
+            Position.X = 12.000000000000000000
+            Position.Y = 16.000000000000000000
+            Size.Width = 309.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 13.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            TextSettings.FontColor = xFF1D6E63
+            Text = 'Calon Cadangan Imam'
+            TabOrder = 0
+          end
+        end
+        object lbiProses: TListBoxItem
+          Selectable = False
+          Position.Y = 260.000000000000000000
+          Size.Width = 360.000000000000000000
+          Size.Height = 405.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object btnProses: TCornerButton
+            Anchors = [akLeft, akRight, akBottom]
+            StyledSettings = [Family, FontColor]
+            Position.X = 12.000000000000000000
+            Position.Y = 341.000000000000000000
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 288.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'btnMain'
+            TabOrder = 1
+            Text = 'Proses'
+            TextSettings.Font.Size = 15.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            XRadius = 8.000000000000000000
+            YRadius = 8.000000000000000000
+            OnClick = btnProsesClick
+          end
+          object btnClear: TCornerButton
+            Anchors = [akRight, akBottom]
+            Position.X = 307.000000000000000000
+            Position.Y = 341.000000000000000000
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 40.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'btnMain'
+            TabOrder = 0
+            XRadius = 8.000000000000000000
+            YRadius = 8.000000000000000000
+            object Glyph1: TGlyph
+              Margins.Left = 4.000000000000000000
+              Margins.Top = 4.000000000000000000
+              Margins.Right = 4.000000000000000000
+              Margins.Bottom = 4.000000000000000000
+              Position.X = 4.000000000000000000
+              Position.Y = 4.000000000000000000
+              Size.Width = 32.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              ImageIndex = 12
+              Images = DM.img
+            end
+          end
+        end
+      end
+      object loFind: TLayout
+        Anchors = [akLeft, akTop, akRight]
+        Position.X = 12.000000000000000000
+        Position.Y = 320.000000000000000000
+        Size.Width = 336.000000000000000000
+        Size.Height = 150.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Rectangle1: TRectangle
+          Anchors = [akLeft, akTop, akRight, akBottom]
+          Fill.Color = claWhite
+          Size.Width = 336.000000000000000000
+          Size.Height = 150.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = xFFA0A0A0
+          Stroke.Thickness = 1.250000000000000000
+          XRadius = 12.000000000000000000
+          YRadius = 12.000000000000000000
+        end
+        object lbFind: TListBox
+          Align = Client
+          Margins.Left = 8.000000000000000000
+          Margins.Top = 4.000000000000000000
+          Margins.Right = 8.000000000000000000
+          Size.Width = 320.000000000000000000
+          Size.Height = 146.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'transparentlistboxstyle'
+          TabOrder = 1
+          ShowScrollBars = False
+          AlternatingRowBackground = True
+          DisableFocusEffect = True
+          DefaultItemStyles.ItemStyle = ''
+          DefaultItemStyles.GroupHeaderStyle = ''
+          DefaultItemStyles.GroupFooterStyle = ''
+          OnItemClick = lbFindItemClick
+          Viewport.Width = 320.000000000000000000
+          Viewport.Height = 106.000000000000000000
+          object edFind: TSearchBox
+            Tag = 10
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Top
+            StyleLookup = 'edLV'
+            TabOrder = 0
+            ReadOnly = True
+            Size.Width = 320.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+        object aniLoad: TAniIndicator
+          Anchors = []
+          Position.X = 144.000000000000000000
+          Position.Y = 48.000000000000000000
+          Visible = False
+        end
+      end
+    end
+  end
+  object loTemp: TLayout
+    StyleName = 'loTemp'
+    Anchors = [akLeft, akTop, akRight]
+    Position.Y = 400.000000000000000000
+    Size.Width = 360.000000000000000000
+    Size.Height = 89.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 0
+    object reTemp: TRectangle
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Corners = [TopRight, BottomLeft]
+      Fill.Color = claWhite
+      HitTest = False
+      Margins.Left = 2.000000000000000000
+      Margins.Top = 2.000000000000000000
+      Margins.Right = 2.000000000000000000
+      Margins.Bottom = 2.000000000000000000
+      Position.X = 2.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 356.000000000000000000
+      Size.Height = 71.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFC7C7C7
+      XRadius = 12.000000000000000000
+      YRadius = 12.000000000000000000
+    end
+    object Label1: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 24.000000000000000000
+      Position.Y = 28.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Waktu Sholat'
+      TabOrder = 10
+    end
+    object Label4: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 24.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Calon Imam'
+      TabOrder = 5
+    end
+    object Label5: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 24.000000000000000000
+      Position.Y = 60.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Calon Cadangan Imam'
+      TabOrder = 4
+    end
+    object lblCadanganCalonImam: TLabel
+      StyleName = 'lblCadanganCalonImam'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 140.000000000000000000
+      Position.Y = 60.000000000000000000
+      Size.Width = 210.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 1
+    end
+    object lblCalonImam: TLabel
+      StyleName = 'lblCalonImam'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 140.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 210.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 2
+    end
+    object lblWaktuSholat: TLabel
+      StyleName = 'lblWaktuSholat'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, FontColor]
+      Position.X = 140.000000000000000000
+      Position.Y = 28.000000000000000000
+      Size.Width = 210.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = ':'
+      TabOrder = 3
+    end
+    object lblIsImam: TLabel
+      StyleName = 'lblIsImam'
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 135.000000000000000000
+      Position.Y = 36.000000000000000000
+      Size.Width = 215.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Nama'
+      Visible = False
+      TabOrder = 6
+    end
+    object reTanggal: TRectangle
+      Corners = [TopRight, BottomLeft]
+      Fill.Color = claWhite
+      Position.X = 8.000000000000000000
+      Size.Width = 201.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFC7C7C7
+      XRadius = 12.000000000000000000
+      YRadius = 12.000000000000000000
+      object ShadowEffect1: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.150000005960464500
+        ShadowColor = claBlack
+      end
+    end
+    object lblTanggal: TLabel
+      StyledSettings = [Family]
+      Position.X = 24.000000000000000000
+      Size.Width = 177.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = xFF1D6E63
+      Text = 'Sabtu, 30 Januari 2020'
+      TabOrder = 12
+    end
+    object lblTgl: TLabel
+      StyleName = 'lblTgl'
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 32.000000000000000000
+      Position.Y = 36.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Waktu Sholat'
+      Visible = False
+      TabOrder = 9
+    end
+    object lblCI: TLabel
+      StyleName = 'lblCI'
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 40.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Waktu Sholat'
+      Visible = False
+      TabOrder = 8
+    end
+    object lblCCI: TLabel
+      StyleName = 'lblCCI'
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 48.000000000000000000
+      Position.Y = 52.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Waktu Sholat'
+      Visible = False
+      TabOrder = 7
+    end
+  end
+  object loHeader: TLayout
+    Anchors = [akLeft, akTop, akRight]
+    Size.Width = 360.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object reHeader: TRectangle
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Corners = [BottomLeft, BottomRight]
+      Fill.Color = xFF1D6E63
+      Position.Y = -8.000000000000000000
+      Size.Width = 360.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 12.000000000000000000
+      YRadius = 12.000000000000000000
+      OnClick = FrameClick
+      object seHeader: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.250000000000000000
+        ShadowColor = claBlack
+      end
+    end
+    object btnHapus: TCornerButton
+      Anchors = [akTop, akRight]
+      Images = DM.img
+      ImageIndex = 11
+      Position.X = 321.000000000000000000
+      Position.Y = 4.000000000000000000
+      Sides = [Top, Left, Bottom, Right]
+      Size.Width = 35.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'btnImg'
+      TabOrder = 1
+      XRadius = 3.000000000000000000
+      YRadius = 3.000000000000000000
+      OnClick = btnHapusClick
+    end
+    object btnBack: TCornerButton
+      Images = DM.img
+      ImageIndex = 5
+      Position.X = 4.000000000000000000
+      Position.Y = 4.000000000000000000
+      Sides = [Top, Left, Bottom, Right]
+      Size.Width = 35.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'btnImg'
+      TabOrder = 2
+      XRadius = 3.000000000000000000
+      YRadius = 3.000000000000000000
+      OnClick = btnBackClick
+    end
+  end
+end

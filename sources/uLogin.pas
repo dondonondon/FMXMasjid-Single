@@ -20,11 +20,44 @@ procedure fnCekLogin;
 
 implementation
 
-uses uDM, uFunc, uMain, uOpenUrl, uRest;
+uses uDM, uFunc, uMain, uOpenUrl, uRest, frMain;
     
 procedure fnLogin(str, password : String);
+var
+  arr : TStringArray;
+  req : String;
 begin
+  try
+    req := 'signin&user='+str+'&password='+password;
+    arr := fnGetJSON(DM.nHTTP, req);
 
+    if arr[0, 0] = 'null' then begin
+      fnShowE(arr[1, 0]);
+      if goFrame = LOADING then
+        fnThreadSyncGoFrame(goFrame, FEED);
+
+      Exit;
+    end;
+
+    aIDUser := arr[0, 0];
+    aUsername := arr[1, 0];
+    aPassword := arr[5, 0];
+
+    fnSimpanUserINI(aUsername, aPassword);
+
+    TThread.Synchronize(nil, procedure begin
+      FMain.lbSetting.ItemByIndex(0).Text := 'Masuk ke Menu';
+      FMain.lbSetting.ItemByIndex(0).ItemData.Detail := MENUADMIN;
+
+      if fromFrame = FEED then
+        fnGoFrame(goFrame, MENUADMIN)
+      else
+        fnGoFrame(goFrame, FEED);
+    end);
+
+  finally
+
+  end;
 end;
 
 procedure fnRegister(user, mail, notelp, password, level : String);
@@ -38,8 +71,22 @@ begin
 end;
 
 procedure fnCekLogin;
+var
+  pass : String;
 begin
+  try
+    fnLoadUserINI;
 
+    if (aUsername <> '') or (aPassword <> '') then begin
+      TTask.Run(procedure begin
+        fnLogin(aUsername, aPassword);
+      end).Start;
+    end else begin
+      fnGoFrame(goFrame, FEED);
+    end;
+  except
+    fnGoFrame(goFrame, FEED);
+  end;
 end;
 
 end.

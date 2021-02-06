@@ -3,249 +3,17 @@ object FMJamaah: TFMJamaah
   Size.Height = 720.000000000000000000
   Size.PlatformDefault = False
   OnClick = FrameClick
-  object loTemp: TLayout
-    StyleName = 'loTemp'
-    Anchors = [akLeft, akTop, akRight]
-    Position.Y = 400.000000000000000000
-    Size.Width = 360.000000000000000000
-    Size.Height = 169.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 0
-    object reTemp: TRectangle
-      Anchors = [akLeft, akTop, akRight, akBottom]
-      Fill.Color = claWhite
-      HitTest = False
-      Margins.Left = 2.000000000000000000
-      Margins.Top = 2.000000000000000000
-      Margins.Right = 2.000000000000000000
-      Margins.Bottom = 2.000000000000000000
-      Position.X = 2.000000000000000000
-      Position.Y = 2.000000000000000000
-      Size.Width = 356.000000000000000000
-      Size.Height = 165.000000000000000000
-      Size.PlatformDefault = False
-      Stroke.Color = xFFC7C7C7
-      XRadius = 12.000000000000000000
-      YRadius = 12.000000000000000000
-    end
-    object Label1: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 16.000000000000000000
-      Position.Y = 12.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = 'Nama'
-      TabOrder = 18
-    end
-    object Label2: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 16.000000000000000000
-      Position.Y = 28.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = 'Alamat'
-      TabOrder = 17
-    end
-    object Label3: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 16.000000000000000000
-      Position.Y = 44.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = 'RT/RW'
-      TabOrder = 16
-    end
-    object Label4: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 16.000000000000000000
-      Position.Y = 60.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = 'Nomor HP'
-      TabOrder = 15
-    end
-    object Label5: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 16.000000000000000000
-      Position.Y = 76.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = 'Email'
-      TabOrder = 14
-    end
-    object Label6: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 16.000000000000000000
-      Position.Y = 92.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = 'Pendidikan'
-      TabOrder = 13
-    end
-    object Label7: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 16.000000000000000000
-      Position.Y = 108.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = 'Pekerjaan'
-      TabOrder = 12
-    end
-    object Label8: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 16.000000000000000000
-      Position.Y = 124.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = 'Jumlah Keluarga'
-      TabOrder = 11
-    end
-    object Label9: TLabel
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 16.000000000000000000
-      Position.Y = 140.000000000000000000
-      Size.Width = 81.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = 'Pengeluaran'
-      TabOrder = 10
-    end
-    object lblPengeluaran: TLabel
-      Anchors = [akLeft, akTop, akRight]
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 104.000000000000000000
-      Position.Y = 140.000000000000000000
-      Size.Width = 240.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = ':'
-      TabOrder = 1
-    end
-    object lblJmlKeluarga: TLabel
-      Anchors = [akLeft, akTop, akRight]
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 104.000000000000000000
-      Position.Y = 124.000000000000000000
-      Size.Width = 240.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = ':'
-      TabOrder = 2
-    end
-    object lblPekerjaan: TLabel
-      Anchors = [akLeft, akTop, akRight]
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 104.000000000000000000
-      Position.Y = 108.000000000000000000
-      Size.Width = 240.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = ':'
-      TabOrder = 3
-    end
-    object lblPendidikan: TLabel
-      Anchors = [akLeft, akTop, akRight]
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 104.000000000000000000
-      Position.Y = 92.000000000000000000
-      Size.Width = 240.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = ':'
-      TabOrder = 4
-    end
-    object lblEmail: TLabel
-      Anchors = [akLeft, akTop, akRight]
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 104.000000000000000000
-      Position.Y = 76.000000000000000000
-      Size.Width = 240.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = ':'
-      TabOrder = 5
-    end
-    object lblNoHp: TLabel
-      Anchors = [akLeft, akTop, akRight]
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 104.000000000000000000
-      Position.Y = 60.000000000000000000
-      Size.Width = 240.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = ':'
-      TabOrder = 6
-    end
-    object lblRTRW: TLabel
-      Anchors = [akLeft, akTop, akRight]
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 104.000000000000000000
-      Position.Y = 44.000000000000000000
-      Size.Width = 240.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = ':'
-      TabOrder = 7
-    end
-    object lblAlamat: TLabel
-      StyleName = 'lblAlamat'
-      Anchors = [akLeft, akTop, akRight]
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 104.000000000000000000
-      Position.Y = 28.000000000000000000
-      Size.Width = 240.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = ':'
-      TabOrder = 8
-    end
-    object lblNama: TLabel
-      Anchors = [akLeft, akTop, akRight]
-      StyledSettings = [Family, Style, FontColor]
-      Position.X = 104.000000000000000000
-      Position.Y = 12.000000000000000000
-      Size.Width = 240.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      Text = ':'
-      TabOrder = 9
-    end
-  end
   object tcMain: TTabControl
     Anchors = [akLeft, akTop, akRight, akBottom]
     Position.Y = 50.000000000000000000
     Size.Width = 360.000000000000000000
     Size.Height = 670.000000000000000000
     Size.PlatformDefault = False
+    StyleLookup = 'tcMain'
     TabIndex = 0
     TabOrder = 1
     TabPosition = None
+    OnClick = FrameClick
     Sizes = (
       360s
       670s
@@ -262,6 +30,7 @@ object FMJamaah: TFMJamaah
       StyleLookup = ''
       TabOrder = 0
       Text = 'tiData'
+      OnClick = FrameClick
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
       object lbMain: TListBox
@@ -280,7 +49,7 @@ object FMJamaah: TFMJamaah
         ShowHint = False
         OnItemClick = lbMainItemClick
         Viewport.Width = 360.000000000000000000
-        Viewport.Height = 630.000000000000000000
+        Viewport.Height = 670.000000000000000000
         object SearchBox1: TSearchBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
@@ -322,6 +91,7 @@ object FMJamaah: TFMJamaah
       StyleLookup = ''
       TabOrder = 0
       Text = 'tiProses'
+      OnClick = FrameClick
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
       object lbProses: TListBox
@@ -373,7 +143,7 @@ object FMJamaah: TFMJamaah
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 8
-          object Edit1: TEdit
+          object edAlamat: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Anchors = [akLeft, akRight, akBottom]
             StyleLookup = 'edLogin'
@@ -400,11 +170,11 @@ object FMJamaah: TFMJamaah
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 7
-          object Edit2: TEdit
+          object edRT: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Anchors = [akLeft, akBottom]
             StyleLookup = 'edLogin'
-            TabOrder = 1
+            TabOrder = 0
             KeyboardType = NumberPad
             FilterChar = '0123456789'
             TextSettings.Font.Size = 11.000000000000000000
@@ -421,11 +191,11 @@ object FMJamaah: TFMJamaah
             OnTyping = edNamaTyping
             OnClick = FrameClick
           end
-          object Edit10: TEdit
+          object edRW: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Anchors = [akRight, akBottom]
             StyleLookup = 'edLogin'
-            TabOrder = 0
+            TabOrder = 1
             KeyboardType = NumberPad
             FilterChar = '0123456789'
             TextSettings.Font.Size = 11.000000000000000000
@@ -450,7 +220,7 @@ object FMJamaah: TFMJamaah
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 6
-          object Edit3: TEdit
+          object edNoHp: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Anchors = [akLeft, akRight, akBottom]
             StyleLookup = 'edLogin'
@@ -479,7 +249,7 @@ object FMJamaah: TFMJamaah
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 5
-          object Edit4: TEdit
+          object edEmail: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Anchors = [akLeft, akRight, akBottom]
             StyleLookup = 'edLogin'
@@ -506,7 +276,7 @@ object FMJamaah: TFMJamaah
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 4
-          object Edit5: TEdit
+          object edPendidikan: TEdit
             Tag = 1
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Anchors = [akLeft, akRight, akBottom]
@@ -523,7 +293,7 @@ object FMJamaah: TFMJamaah
             Size.PlatformDefault = False
             TextPrompt = 'Pendidikan'
             StyledSettings = [Family, Style, FontColor]
-            OnChange = edNamaTyping
+            OnChange = edPendidikanChange
             OnTyping = edNamaTyping
             OnClick = FrameClick
           end
@@ -535,7 +305,7 @@ object FMJamaah: TFMJamaah
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 3
-          object Edit6: TEdit
+          object edPekerjaan: TEdit
             Tag = 1
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Anchors = [akLeft, akRight, akBottom]
@@ -552,7 +322,7 @@ object FMJamaah: TFMJamaah
             Size.PlatformDefault = False
             TextPrompt = 'Pekerjaan'
             StyledSettings = [Family, Style, FontColor]
-            OnChange = edNamaTyping
+            OnChange = edPendidikanChange
             OnTyping = edNamaTyping
             OnClick = FrameClick
           end
@@ -564,7 +334,7 @@ object FMJamaah: TFMJamaah
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 2
-          object Edit7: TEdit
+          object edJmlKeluarga: TEdit
             Tag = 1
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Anchors = [akLeft, akRight, akBottom]
@@ -583,7 +353,7 @@ object FMJamaah: TFMJamaah
             Size.PlatformDefault = False
             TextPrompt = 'Jumlah Keluarga'
             StyledSettings = [Family, Style, FontColor]
-            OnChange = edNamaTyping
+            OnChange = edPendidikanChange
             OnTyping = edNamaTyping
             OnClick = FrameClick
           end
@@ -595,7 +365,7 @@ object FMJamaah: TFMJamaah
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
-          object Edit8: TEdit
+          object edPengeluaran: TEdit
             Tag = 1
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Anchors = [akLeft, akRight, akBottom]
@@ -614,7 +384,7 @@ object FMJamaah: TFMJamaah
             Size.PlatformDefault = False
             TextPrompt = 'Pengeluaran Rumah Tangga'
             StyledSettings = [Family, Style, FontColor]
-            OnChange = edNamaTyping
+            OnChange = edPendidikanChange
             OnTyping = edNamaTyping
             OnClick = FrameClick
           end
@@ -626,7 +396,7 @@ object FMJamaah: TFMJamaah
           Size.Height = 65.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          object gsr1: TSwitch
+          object swImam: TSwitch
             IsChecked = False
             Margins.Left = 7.000000000000000000
             Margins.Right = 150.000000000000000000
@@ -690,6 +460,7 @@ object FMJamaah: TFMJamaah
             TabOrder = 0
             XRadius = 8.000000000000000000
             YRadius = 8.000000000000000000
+            OnClick = btnClearClick
             object Glyph1: TGlyph
               Margins.Left = 4.000000000000000000
               Margins.Top = 4.000000000000000000
@@ -713,6 +484,7 @@ object FMJamaah: TFMJamaah
         Size.Width = 336.000000000000000000
         Size.Height = 150.000000000000000000
         Size.PlatformDefault = False
+        Visible = False
         TabOrder = 1
         object Rectangle1: TRectangle
           Anchors = [akLeft, akTop, akRight, akBottom]
@@ -742,7 +514,7 @@ object FMJamaah: TFMJamaah
           DefaultItemStyles.GroupFooterStyle = ''
           OnItemClick = lbFindItemClick
           Viewport.Width = 320.000000000000000000
-          Viewport.Height = 141.000000000000000000
+          Viewport.Height = 146.000000000000000000
           object edFind: TSearchBox
             Tag = 10
             Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -775,6 +547,7 @@ object FMJamaah: TFMJamaah
       Stroke.Kind = None
       XRadius = 12.000000000000000000
       YRadius = 12.000000000000000000
+      OnClick = FrameClick
       object seHeader: TShadowEffect
         Distance = 3.000000000000000000
         Direction = 45.000000000000000000
@@ -812,6 +585,263 @@ object FMJamaah: TFMJamaah
       TabOrder = 1
       XRadius = 3.000000000000000000
       YRadius = 3.000000000000000000
+      OnClick = btnHapusClick
+    end
+  end
+  object loTemp: TLayout
+    StyleName = 'loTemp'
+    Anchors = [akLeft, akTop, akRight]
+    Position.Y = 400.000000000000000000
+    Size.Width = 360.000000000000000000
+    Size.Height = 169.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 0
+    object reTemp: TRectangle
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Fill.Color = claWhite
+      HitTest = False
+      Margins.Left = 2.000000000000000000
+      Margins.Top = 2.000000000000000000
+      Margins.Right = 2.000000000000000000
+      Margins.Bottom = 2.000000000000000000
+      Position.X = 2.000000000000000000
+      Position.Y = 2.000000000000000000
+      Size.Width = 356.000000000000000000
+      Size.Height = 165.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFC7C7C7
+      XRadius = 12.000000000000000000
+      YRadius = 12.000000000000000000
+    end
+    object Label1: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 16.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Nama'
+      TabOrder = 19
+    end
+    object Label2: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 16.000000000000000000
+      Position.Y = 28.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Alamat'
+      TabOrder = 17
+    end
+    object Label3: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 16.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'RT/RW'
+      TabOrder = 16
+    end
+    object Label4: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 16.000000000000000000
+      Position.Y = 60.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Nomor HP'
+      TabOrder = 15
+    end
+    object Label5: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 16.000000000000000000
+      Position.Y = 76.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Email'
+      TabOrder = 14
+    end
+    object Label6: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 16.000000000000000000
+      Position.Y = 92.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Pendidikan'
+      TabOrder = 13
+    end
+    object Label7: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 16.000000000000000000
+      Position.Y = 108.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Pekerjaan'
+      TabOrder = 12
+    end
+    object Label8: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 16.000000000000000000
+      Position.Y = 124.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Jumlah Keluarga'
+      TabOrder = 11
+    end
+    object Label9: TLabel
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 16.000000000000000000
+      Position.Y = 140.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Pengeluaran'
+      TabOrder = 10
+    end
+    object lblPengeluaran: TLabel
+      StyleName = 'lblPengeluaran'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 116.000000000000000000
+      Position.Y = 140.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 1
+    end
+    object lblJmlKeluarga: TLabel
+      StyleName = 'lblJmlKeluarga'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 116.000000000000000000
+      Position.Y = 124.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 2
+    end
+    object lblPekerjaan: TLabel
+      StyleName = 'lblPekerjaan'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 116.000000000000000000
+      Position.Y = 108.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 3
+    end
+    object lblPendidikan: TLabel
+      StyleName = 'lblPendidikan'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 116.000000000000000000
+      Position.Y = 92.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 4
+    end
+    object lblEmail: TLabel
+      StyleName = 'lblEmail'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 116.000000000000000000
+      Position.Y = 76.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 5
+    end
+    object lblNoHp: TLabel
+      StyleName = 'lblNoHp'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 116.000000000000000000
+      Position.Y = 60.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 6
+    end
+    object lblRTRW: TLabel
+      StyleName = 'lblRTRW'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 116.000000000000000000
+      Position.Y = 44.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 7
+    end
+    object lblAlamat: TLabel
+      StyleName = 'lblAlamat'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 116.000000000000000000
+      Position.Y = 28.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 8
+    end
+    object lblNama: TLabel
+      StyleName = 'lblNama'
+      Anchors = [akLeft, akTop, akRight]
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 116.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 228.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = ':'
+      TabOrder = 9
+    end
+    object lblIsImam: TLabel
+      StyleName = 'lblIsImam'
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 36.000000000000000000
+      Position.Y = 20.000000000000000000
+      Size.Width = 69.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      Text = 'Nama'
+      Visible = False
+      TabOrder = 18
     end
   end
 end

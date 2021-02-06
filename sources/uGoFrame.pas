@@ -35,7 +35,8 @@ const
 implementation
 
 uses frMain, frLoading, uFunc, uMain, frLogin, frHome, frFeed, frMenu,
-  frMJamaah;
+  frMJamaah, frJadwalImamSholat, frMFeed, frMKajian, frMInformasi, frInformasi,
+  frKajian, frImam, frAkun;
 
 procedure fnCallFrame(AParent: TLayout; FrameClass: TFrameClass);
 begin
@@ -70,6 +71,38 @@ begin
     fnCallFrame(FMain.loFrame, frMJamaah.TFMJamaah);
     FMJamaah := TFMJamaah(genFrame);
     FMJamaah.Visible := False;
+
+    fnCallFrame(FMain.loFrame, frJadwalImamSholat.TFJadwalImam);
+    FJadwalImam := TFJadwalImam(genFrame);
+    FJadwalImam.Visible := False;
+
+    fnCallFrame(FMain.loFrame, frMFeed.TFMFeed);
+    FMFeed := TFMFeed(genFrame);
+    FMFeed.Visible := False;
+
+    fnCallFrame(FMain.loFrame, frMKajian.TFMKajian);
+    FMKajian := TFMKajian(genFrame);
+    FMKajian.Visible := False;
+
+    fnCallFrame(FMain.loFrame, frMInformasi.TFMInformasi);
+    FMInformasi := TFMInformasi(genFrame);
+    FMInformasi.Visible := False;
+
+    fnCallFrame(FMain.loFrame, frInformasi.TFInformasi);
+    FInformasi := TFInformasi(genFrame);
+    FInformasi.Visible := False;
+
+    fnCallFrame(FMain.loFrame, frKajian.TFKajian);
+    FKajian := TFKajian(genFrame);
+    FKajian.Visible := False;
+
+    fnCallFrame(FMain.loFrame, frImam.TFImam);
+    FImam := TFImam(genFrame);
+    FImam.Visible := False;
+
+    fnCallFrame(FMain.loFrame, frAkun.TFAkun);
+    FAkun := TFAkun(genFrame);
+    FAkun.Visible := False;
   except
 
   end;
@@ -91,7 +124,23 @@ begin
   else if transFR = MENUADMIN then
     tFR := FMenu
   else if transFR = MJAMAAH then
-    tFR := FMJamaah;
+    tFR := FMJamaah
+  else if transFR = MJADWALIMAM then
+    tFR := FJadwalImam
+  else if transFR = MFEED then
+    tFR := FMFeed
+  else if transFR = MJADWALKAJIAN then
+    tFR := FMKajian
+  else if transFR = MPENGUMUMAN then
+    tFR := FMInformasi
+  else if transFR = INFORMASI then
+    tFR := FInformasi
+  else if transFR = KAJIAN then
+    tFR := FKajian
+  else if transFR = IMAM then
+    tFR := FImam
+  else if transFR = AKUN then
+    tFR := FAkun;
 
   if st = sFrom then
     frFrom := tFR

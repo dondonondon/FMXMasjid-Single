@@ -531,15 +531,24 @@ object TStyleContainer
     object TRectangle
       StyleName = 'background'
       Align = Contents
-      Fill.Color = claWhite
+      Fill.Kind = None
       Locked = True
       HitTest = False
+      Sides = [Bottom]
       Size.Width = 80.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      Stroke.Color = xFFD9D9D9
-      XRadius = 3.000000000000000000
-      YRadius = 3.000000000000000000
+      Stroke.Color = xFFE2E2E2
+      Stroke.Thickness = 1.500000000000000000
+      object TColorAnimation
+        StyleName = 'caBackground'
+        Duration = 0.200000002980232200
+        PropertyName = 'Stroke.Color'
+        StartValue = xFFE2E2E2
+        StopValue = xFF1D6E63
+        Trigger = 'IsFocused=true'
+        TriggerInverse = 'IsFocused=false'
+      end
     end
     object TGlyph
       StyleName = 'glyphstyle'
@@ -566,6 +575,7 @@ object TStyleContainer
       Size.Width = 74.000000000000000000
       Size.Height = 16.000000000000000000
       Size.PlatformDefault = False
+      Text = 'Text'
       TextSettings.FontColor = claWhite
       TextSettings.WordWrap = False
     end
@@ -1276,7 +1286,7 @@ object TStyleContainer
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     Visible = False
-    TabOrder = 12
+    TabOrder = 11
     object TRectangle
       StyleName = 'background'
       Align = Contents
@@ -1330,7 +1340,7 @@ object TStyleContainer
     Size.Height = 200.000000000000000000
     Size.PlatformDefault = False
     Visible = False
-    TabOrder = 13
+    TabOrder = 12
     object TBrushObject
       StyleName = 'scrollbackground'
       Brush.Color = xFFF0F0F0
@@ -1383,7 +1393,7 @@ object TStyleContainer
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
     Visible = False
-    TabOrder = 14
+    TabOrder = 13
     object TText
       StyleName = 'text'
       Align = Client
@@ -1403,7 +1413,7 @@ object TStyleContainer
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
     Visible = False
-    TabOrder = 15
+    TabOrder = 14
     FixedWidth = 24
     FixedHeight = 24
     object TStyleObject
@@ -1451,7 +1461,7 @@ object TStyleContainer
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
     Visible = False
-    TabOrder = 16
+    TabOrder = 15
     FixedHeight = 32
     object TRectangle
       StyleName = 'background'
@@ -1552,7 +1562,7 @@ object TStyleContainer
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
     Visible = False
-    TabOrder = 17
+    TabOrder = 16
     FixedWidth = 24
     FixedHeight = 24
     object TStyleObject
@@ -2217,7 +2227,7 @@ object TStyleContainer
     Size.Height = 100.000000000000000000
     Size.PlatformDefault = False
     Visible = False
-    TabOrder = 19
+    TabOrder = 18
     object TText
       StyleName = 'lblMenu'
       Align = Bottom
@@ -2260,7 +2270,8 @@ object TStyleContainer
     Size.Width = 80.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 11
+    Visible = False
+    TabOrder = 19
     object TRectangle
       StyleName = 'background'
       Align = Contents
@@ -2305,6 +2316,213 @@ object TStyleContainer
       Text = 'Text'
       TextSettings.FontColor = claWhite
       TextSettings.WordWrap = False
+    end
+  end
+  object TLayout
+    StyleName = 'dtMain'
+    Align = Center
+    Size.Width = 336.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 20
+    object TRectangle
+      StyleName = 'background'
+      Align = Contents
+      Fill.Kind = None
+      Locked = True
+      HitTest = False
+      Sides = [Bottom]
+      Size.Width = 336.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFE2E2E2
+      Stroke.Thickness = 1.500000000000000000
+      object TColorAnimation
+        StyleName = 'caBackground'
+        Duration = 0.200000002980232200
+        PropertyName = 'Stroke.Color'
+        StartValue = xFFE2E2E2
+        StopValue = xFF1D6E63
+        Trigger = 'IsFocused=true'
+        TriggerInverse = 'IsFocused=false'
+      end
+    end
+    object TButton
+      StyleName = 'arrow'
+      Align = MostRight
+      CanFocus = False
+      Cursor = crArrow
+      Position.X = 316.000000000000000000
+      Size.Width = 20.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'DateEdit1Style1dropdowneditbutton1'
+      Visible = False
+    end
+    object TButton
+      StyleName = 'clearbutton'
+      Align = Right
+      CanFocus = False
+      Margins.Top = 2.000000000000000000
+      Margins.Bottom = 2.000000000000000000
+      Position.X = 316.000000000000000000
+      Position.Y = 2.000000000000000000
+      Size.Width = 20.000000000000000000
+      Size.Height = 28.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'DateEdit1Style1cleareditbutton1'
+      Visible = False
+    end
+    object TActiveStyleTextObject
+      StyleName = 'Text'
+      Align = Client
+      Locked = True
+      Margins.Left = 2.000000000000000000
+      Margins.Top = 2.000000000000000000
+      Margins.Right = 2.000000000000000000
+      Margins.Bottom = 2.000000000000000000
+      Size.Width = 332.000000000000000000
+      Size.Height = 28.000000000000000000
+      Size.PlatformDefault = False
+      ShadowVisible = False
+      ActiveTrigger = Focused
+      ActiveColor = claBlack
+    end
+    object TBrushObject
+      StyleName = 'selection'
+      Brush.Color = x7F2A96FF
+    end
+    object TCheckBox
+      StyleName = 'check'
+      Align = MostLeft
+      CanFocus = False
+      DisableFocusEffect = True
+      Margins.Left = 2.000000000000000000
+      Size.Width = 20.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'DateEdit1Style1CheckBoxStyle1'
+      Visible = False
+    end
+  end
+  object TLayout
+    StyleName = 'tiMain'
+    Align = Center
+    Size.Width = 336.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 21
+    object TGridLayout
+      Align = MostRight
+      ItemHeight = -1.000000000000000000
+      ItemWidth = 64.000000000000000000
+      Orientation = Vertical
+      Margins.Top = 3.000000000000000000
+      Margins.Right = 3.000000000000000000
+      Margins.Bottom = 3.000000000000000000
+      Position.X = 313.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 20.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      Visible = False
+      object TLayout
+        Size.Width = 20.000000000000000000
+        Size.Height = 13.000000000000000000
+        Size.PlatformDefault = False
+        object TButton
+          StyleName = 'upbutton'
+          Align = Client
+          CanFocus = False
+          Size.Width = 20.000000000000000000
+          Size.Height = 13.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'spintopbutton'
+        end
+      end
+      object TLayout
+        Position.Y = 13.000000000000000000
+        Size.Width = 20.000000000000000000
+        Size.Height = 13.000000000000000000
+        Size.PlatformDefault = False
+        object TButton
+          StyleName = 'downbutton'
+          Align = Client
+          CanFocus = False
+          Size.Width = 20.000000000000000000
+          Size.Height = 13.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'spinbottombutton'
+        end
+      end
+    end
+    object TButton
+      StyleName = 'clearbutton'
+      Align = Right
+      CanFocus = False
+      Margins.Top = 2.000000000000000000
+      Margins.Bottom = 2.000000000000000000
+      Position.X = 316.000000000000000000
+      Position.Y = 2.000000000000000000
+      Size.Width = 20.000000000000000000
+      Size.Height = 28.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'cleareditbutton'
+      Visible = False
+    end
+    object TActiveStyleTextObject
+      StyleName = 'Text'
+      Align = Client
+      Locked = True
+      Margins.Left = 3.000000000000000000
+      Margins.Top = 3.000000000000000000
+      Margins.Right = 3.000000000000000000
+      Margins.Bottom = 3.000000000000000000
+      Size.Width = 330.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Text'
+      ShadowVisible = False
+      ActiveTrigger = Focused
+      ActiveColor = claBlack
+    end
+    object TBrushObject
+      StyleName = 'selection'
+      Brush.Color = x7F2A96FF
+    end
+    object TCheckBox
+      StyleName = 'check'
+      Align = MostLeft
+      CanFocus = False
+      DisableFocusEffect = True
+      Margins.Left = 2.000000000000000000
+      Size.Width = 20.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      Visible = False
+    end
+    object TRectangle
+      StyleName = 'background'
+      Align = Contents
+      Fill.Kind = None
+      Locked = True
+      HitTest = False
+      Sides = [Bottom]
+      Size.Width = 336.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFE2E2E2
+      Stroke.Thickness = 1.500000000000000000
+      object TColorAnimation
+        StyleName = 'caBackground'
+        Duration = 0.200000002980232200
+        PropertyName = 'Stroke.Color'
+        StartValue = xFFE2E2E2
+        StopValue = xFF1D6E63
+        Trigger = 'IsFocused=true'
+        TriggerInverse = 'IsFocused=false'
+      end
     end
   end
 end
