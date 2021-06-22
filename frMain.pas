@@ -9,7 +9,7 @@ uses
   FMX.ListView.Types, FMX.ListView.Appearances, FMX.Platform, FMX.ListView.Adapters.Base, FMX.VirtualKeyboard,
   System.ImageList, FMX.ImgList, FMX.ScrollBox, FMX.Memo, FMX.TabControl,
   FMX.Effects, UI.Toast, FMX.DateTimeCtrls, FMX.WebBrowser, FMX.Edit,
-  FMX.ListBox
+  FMX.ListBox, FMX.Memo.Types
   {$IF Defined(ANDROID)}
     ,Androidapi.JNI.AdMob, Androidapi.Helpers, FMX.Platform.Android,
     FMX.Helpers.Android, Androidapi.JNI.PlayServices, Androidapi.JNI.Os,
