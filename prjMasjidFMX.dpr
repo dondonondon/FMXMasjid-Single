@@ -1,4 +1,4 @@
-program prjMasjidFMX10;
+program prjMasjidFMX;
 
 
 

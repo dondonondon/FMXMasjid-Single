@@ -1,4 +1,0 @@
-.\assets\internal\9.png
-.\assets\internal\feed.jpg
-.\assets\internal\profil.png
-.\assets\internal\kosong.png
