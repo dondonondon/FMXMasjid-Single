@@ -13,7 +13,7 @@ uses
     Androidapi.Helpers, FMX.Platform.Android, System.Android.Service, System.IOUtils,
     FMX.Helpers.Android, Androidapi.JNI.PlayServices, Androidapi.JNI.Os,
   {$ELSEIF Defined(MSWINDOWS)}
-    IWSystem,
+
   {$ENDIF}
   System.Generics.Collections, System.Net.URLClient, System.Net.HttpClient,
   System.Net.HttpClientComponent;

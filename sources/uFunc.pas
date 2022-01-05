@@ -20,7 +20,7 @@ uses
   {$IF DEFINED(IOS) or DEFINED(ANDROID)}
     ;
   {$ELSEIF Defined(MSWINDOWS)}
-    ,IWSystem;
+    ;
   {$ELSE}
   ;
   {$ENDIF}
@@ -275,7 +275,7 @@ begin
   {$IF DEFINED(IOS) or DEFINED(ANDROID)}
     loc := TPath.GetDocumentsPath + PathDelim;
   {$ELSEIF Defined(MSWINDOWS)}
-    loc := gsAppPath + 'assets' + PathDelim;
+    loc := ExpandFileName(GetCurrentDir) + PathDelim + 'assets' + PathDelim;
     if not DirectoryExists(loc) then
       CreateDir(loc);
   {$ENDIF}

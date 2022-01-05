@@ -3,7 +3,7 @@ unit frFeed;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.Layouts, System.Threading, FMX.ListBox,
   FMX.Objects, FMX.Effects, System.ImageList, FMX.ImgList, System.IOUtils,
@@ -11,7 +11,7 @@ uses
   {$IF DEFINED (ANDROID)}
   , Androidapi.Helpers
   {$ELSEIF DEFINED (MSWINDOWS)}
-  , IWSystem
+
   {$ENDIF}
   ;
 
@@ -139,7 +139,7 @@ begin
   {$IF DEFINED (ANDROID)}
   loc := TPath.GetDocumentsPath + PathDelim;
   {$ELSEIF DEFINED (MSWINDOWS)}
-  loc := gsAppPath + 'assets/';
+  loc := ExpandFileName(GetCurrentDir) + PathDelim + 'assets/';
   {$ENDIF}
 
   for i := 0 to lo.ControlsCount - 1 do begin

@@ -11,7 +11,7 @@ uses
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, REST.Types, REST.Client, Data.Bind.Components,
   Data.Bind.ObjectScope, System.Net.URLClient, System.Net.HttpClient,
-  System.Net.HttpClientComponent;
+  System.Net.HttpClientComponent, FireDAC.Phys.SQLiteWrapper.Stat;
 
 type
   TDM = class(TDataModule)
@@ -46,7 +46,7 @@ uses
   {$IF DEFINED(IOS) or DEFINED(ANDROID)}
     System.IOUtils;
   {$ELSEIF Defined(MSWINDOWS)}
-    System.IOUtils, IWSystem;
+    System.IOUtils;
   {$ELSE}
     System.IOUtils;
   {$ENDIF}

@@ -21,10 +21,12 @@ const
       url = 'https://www.blangkon.net/API/Masjid/APIMasjid.php?key=apiapi&act=';
       imgURL = 'https://www.blangkon.net/API/Masjid/files/';
   {$ELSE}
-      url = 'http://localhost/appru/API/Masjid/APIMasjid.php?key=apiapi&act=';
-      imgURL = 'http://localhost/appru/API/Masjid/files/';
+      //url = 'http://localhost/appru/API/Masjid/APIMasjid.php?key=apiapi&act=';
+      //imgURL = 'http://localhost/appru/API/Masjid/files/';
       //url = 'https://www.blangkon.net/API/Masjid/APIMasjid.php?key=apiapi&act=';
       //imgURL = 'https://www.blangkon.net/API/Masjid/files/';
+      url = 'https://www.blangkon.net/API/Masjid/APIMasjid.php?key=apiapi&act=';
+      imgURL = 'https://www.blangkon.net/API/Masjid/files/';
   {$ENDIF}
 
 type

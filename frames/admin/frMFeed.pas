@@ -9,7 +9,7 @@ uses
   FMX.Objects, System.Actions, FMX.ActnList, FMX.StdActns,
   FMX.MediaLibrary.Actions, System.Permissions, FMX.DialogService, FMX.ListBox,
   FMX.TabControl, FMX.ImgList, FMX.ScrollBox, FMX.Memo, System.Net.Mime,
-  FMX.Edit, FMX.SearchBox;
+  FMX.Edit, FMX.SearchBox, FMX.Memo.Types;
 
 type
   TFMFeed = class(TFrame)

@@ -94,16 +94,16 @@ object FMInformasi: TFMInformasi
         Size.PlatformDefault = False
         StyleLookup = 'transparentlistboxstyle'
         TabOrder = 0
+        ParentShowHint = False
+        ShowHint = False
         ShowScrollBars = False
         DisableFocusEffect = True
         DefaultItemStyles.ItemStyle = ''
         DefaultItemStyles.GroupHeaderStyle = ''
         DefaultItemStyles.GroupFooterStyle = ''
-        ParentShowHint = False
-        ShowHint = False
         OnItemClick = lbMainItemClick
         Viewport.Width = 360.000000000000000000
-        Viewport.Height = 630.000000000000000000
+        Viewport.Height = 670.000000000000000000
         object SearchBox1: TSearchBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
@@ -362,7 +362,6 @@ object FMInformasi: TFMInformasi
     Size.Width = 360.000000000000000000
     Size.Height = 113.000000000000000000
     Size.PlatformDefault = False
-    Visible = False
     TabOrder = 0
     object reTemp: TRectangle
       Anchors = [akLeft, akTop, akRight, akBottom]
@@ -420,7 +419,6 @@ object FMInformasi: TFMInformasi
       Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
       ImageIndex = 0
-      Images = FMain.img
     end
     object lblSelengkapnya: TLabel
       StyleName = 'lblSelengkapnya'
